@@ -1,0 +1,44 @@
+Definición de variables. Necesitamos variables para representar los atributos clave de cada equipo. Por ejemplo:
+python
+# Variables para representar un equipo
+nombre_equipo = "Equipo A"
+codigo_equipo = "EQ-123"
+cantidad_disponible = 10
+ubicacion = "Estantería A, pasillo 3"
+fecha_ingreso = "2024-03-08"
+estado = "En buen estado"
+Creación de una función para agregar un nuevo equipo. Esta función tomará como entrada los datos del nuevo equipo y los añadirá a una lista o diccionario que almacena la información de todos los equipos.
+python
+equipos = [] # Lista para almacenar la información de los equipos
+ 
+def agregar_equipo(nombre, codigo, cantidad, ubicacion, fecha_ingreso, estado):
+  nuevo_equipo = {
+      "nombre": nombre,
+      "codigo": codigo,
+      "cantidad": cantidad,
+      "ubicacion": ubicacion,
+      "fecha_ingreso": fecha_ingreso,
+      "estado": estado
+  }
+  equipos.append(nuevo_equipo)
+  print(f"Equipo {nombre} agregado correctamente.")
+ 
+# Ejemplo de uso
+agregar_equipo("Equipo B", "EQ-456", 5, "Estantería B, pasillo 1", "2024-03-09", "En buen estado")
+Creación de funciones para otras operaciones. Se pueden crear funciones adicionales para realizar otras operaciones, como buscar un equipo por su código, actualizar la cantidad disponible, o generar un reporte de los equipos en la bodega. Ejemplos:
+python
+def buscar_equipo(codigo):
+  for equipo in equipos:
+    if equipo["codigo"] == codigo:
+      return equipo
+  return None
+ 
+def actualizar_cantidad(codigo, nueva_cantidad):
+  equipo = buscar_equipo(codigo)
+  if equipo:
+    equipo["cantidad"] = nueva_cantidad
+    print(f"Cantidad de {equipo['nombre']} actualizada.")
+  else:
+    print(f"Equipo con código {codigo} no encontrado.")
+ 
+Implementación de un sistema de gestión más robusto. Para una gestión más completa, se podría considerar el uso de una base de datos (como SQLite o una base de datos en la nube) para almacenar la información de los equipos de forma persistente. Esto permitiría una mejor organización y escalabilidad del sistema
