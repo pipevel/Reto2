@@ -1,0 +1,58 @@
+class Bodega:
+    def __init__(self):
+        self.equipos = []  # Lista de equipos en bodega
+    
+    def agregar_equipo(self, serial, estado, tipo):
+        equipo = {
+            'serial': serial,
+            'estado': estado,
+            'tipo': tipo
+        }
+        self.equipos.append(equipo)
+        print(f"Equipo {serial} agregado como {estado} ({tipo}).")
+    
+    def listar_equipos(self):
+        print("\nListado de equipos en bodega:")
+        for equipo in self.equipos:
+            print(f"Serial: {equipo['serial']}, Estado: {equipo['estado']}, Tipo: {equipo['tipo']}")
+    
+    def buscar_equipo(self, serial):
+        for equipo in self.equipos:
+            if equipo['serial'] == serial:
+                return equipo
+        return None
+    
+    def retirar_equipo(self, serial):
+        equipo = self.buscar_equipo(serial)
+        if equipo:
+            self.equipos.remove(equipo)
+            print(f"Equipo {serial} retirado de la bodega.")
+        else:
+            print("Equipo no encontrado.")
+
+bodega = Bodega()
+
+while True:
+    print("\nMenú de Control de Bodega:")
+    print("1. Agregar equipo")
+    print("2. Listar equipos")
+    print("3. Retirar equipo")
+    print("4. Salir")
+    
+    opcion = input("Seleccione una opción: ")
+    
+    if opcion == "1":
+        serial = input("Ingrese el número de serie: ")
+        estado = input("Ingrese el estado (Nuevo/Usado Funcional/No Funcional): ")
+        tipo = input("Ingrese el tipo de equipo: ")
+        bodega.agregar_equipo(serial, estado, tipo)
+    elif opcion == "2":
+        bodega.listar_equipos()
+    elif opcion == "3":
+        serial = input("Ingrese el número de serie a retirar: ")
+        bodega.retirar_equipo(serial)
+    elif opcion == "4":
+        print("Saliendo del sistema...")
+        break
+    else:
+        print("Opción no válida. Intente de nuevo.")
